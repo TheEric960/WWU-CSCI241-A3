@@ -32,7 +32,7 @@ public final class Heap<V, P extends Comparable<P>> {
      *        is smaller than `c[i]`'s priority
      *
      *   In Phase 3, the following class invariant also must be maintained:
-     *     3. The tree cannot contain duplicate *values*; note that dupliate
+     *     3. The tree cannot contain duplicate *values*; note that duplicate
      *        *priorities* are still allowed.
      *     4. map contains one entry for each element of the heap, so
      *        map.size() == c.size()
@@ -70,14 +70,8 @@ public final class Heap<V, P extends Comparable<P>> {
      *  In Phase 3 only:
      *  @throws IllegalArgumentException if v is already in the heap.*/
     public void add(V v, P p) throws IllegalArgumentException {
-        // TODO 1.1: Write this whole method. Note that bubbleUp is not implemented,
-        // so calling it will have no effect. The first tests of add, using
-        // test00Add, ensure that this method maintains the class invariant in
-        // cases where no bubbling up is needed.
-        // When done, this should pass Phase1Test::test00Add().
-        //
+        c.append(new Entry(v, p));
         // TODO 3.1: Update this method to maintain class invariants 3-5.
-        throw new UnsupportedOperationException();
     }
 
     /** Return the number of values in this heap.
