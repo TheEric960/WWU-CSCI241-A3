@@ -127,10 +127,11 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Each c[i]'s priority <= its childrens' priorities
      *                except perhaps for c[k] */
     protected void bubbleDown(int k) {
-        P x, y, z = null;
+        P x, y, z;
         int h;
         boolean flag = false;
 
+        // does k's left child exist?
         if (k * 2 + 1 < c.size()) {
             x = c.get(k).priority;
             y = c.get(k * 2 + 1).priority;
@@ -138,20 +139,22 @@ public final class Heap<V, P extends Comparable<P>> {
             return;
         }
 
+        // does k's right child exist?
         if (k * 2 + 2 < c.size()) {
-            z = c.get(k * 2 + 2).priority;
             h = smallerChild(k);
         } else {
             h = k * 2 + 1;
             flag = true;
         }
 
+        // swap accordingly and repeat
         if (flag) {
             if (x.compareTo(y) > 0) {
                 swap(k, h);
                 bubbleDown(h);
             }
         } else {
+            z = c.get(k * 2 + 2).priority;
             if (x.compareTo(y) > 0 || x.compareTo(z) > 0) {
                 swap(k, h);
                 bubbleDown(h);
@@ -181,8 +184,8 @@ public final class Heap<V, P extends Comparable<P>> {
      * if only one child exists, return that child's index
      * Precondition: at least one child exists.*/
     private int smallerChild(int k) {
-        int i = c.get(2*k+1).priority.compareTo(c.get(2*k+1).priority);
-        if (i > 0)
+        int i = c.get(2*k+1).priority.compareTo(c.get(2*k+2).priority);
+        if (i >= 0)
             return 2*k+2;
         else
             return 2*k+1;

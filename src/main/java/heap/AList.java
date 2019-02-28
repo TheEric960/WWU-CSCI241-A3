@@ -97,8 +97,8 @@ public class AList<T> {
       throw new NoSuchElementException();
     }
     T n = a[0];
-    System.arraycopy(a, 1, a, 0, a.length - 1);
     size--;
+    a[0] = a[size];
     return n;
   }
 
