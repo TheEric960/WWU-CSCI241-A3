@@ -1,5 +1,6 @@
 package heap;
 
+import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 /** An ArrayList-like dynamic array class that allocates
@@ -81,8 +82,24 @@ public class AList<T> {
    *  this *does* modify size and cannot modify capacity.
    *  @throws NoSuchElementException if size == 0*/
   public T pop() {
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
     size--;
     return a[size];
+  }
+
+  /** Removes and returns the value at the start of the AList.
+   *  this *does* modify size and cannot modify capacity.
+   *  @throws NoSuchElementException if size == 0*/
+  public T popFromFront() {
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
+    T n = a[0];
+    System.arraycopy(a, 1, a, 0, a.length - 1);
+    size--;
+    return n;
   }
 
   /*  Create and return a T[] of size n.

@@ -11,9 +11,6 @@ import java.util.NoSuchElementException;
  *  with the smallest priority is at the root of the heap. */
 public final class Heap<V, P extends Comparable<P>> {
 
-    // TODO 1.0: Read and understand the class invariants given in the
-    // following comment:
-
     /**
      * The contents of c represent a complete binary tree. We use square-bracket
      * shorthand to denote indexing into the AList (which is actually
@@ -87,7 +84,6 @@ public final class Heap<V, P extends Comparable<P>> {
         Entry tmp = c.get(h);
         c.put(h, c.get(k));
         c.put(k, tmp);
-        bubbleUp(k);
 
         // TODO 3.2 Change this method to additionally maintain class
         // invariants 3-5 by updating the map field.
@@ -99,6 +95,7 @@ public final class Heap<V, P extends Comparable<P>> {
     protected void bubbleUp(int k) {
         if (c.get(k).priority.compareTo(c.get((k - 1) / 2).priority) < 0) {
             swap(k, (k - 1) / 2);
+            bubbleUp((k - 1) / 2);
         }
     }
 
@@ -116,14 +113,11 @@ public final class Heap<V, P extends Comparable<P>> {
      *  in the size of the heap.
      *  @throws NoSuchElementException if the heap is empty. */
     public V poll() throws NoSuchElementException {
-        // TODO 1.5: Do poll (1.5) and bubbleDown (1.6) together. When they
-        // are written correctly, testing procedures
-        // test30Poll_BubbleDown_NoDups and test40testDuplicatePriorities
-        // should pass. The second of these checks that entries with equal
-        // priority are not swapped.
-        //
+        V v = c.popFromFront().value;
+        bubbleDown(0);
+        return v;
+
         // TODO 3.3: Update poll() to maintain class invariants 3-5.
-        throw new UnsupportedOperationException();
     }
 
     /** Bubble c[k] down in heap until it finds the right place.
@@ -133,10 +127,21 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Each c[i]'s priority <= its childrens' priorities
      *                except perhaps for c[k] */
     protected void bubbleDown(int k) {
-        // TODO 1.6: Do poll (1.5) and bubbleDown together.  We also suggest
-        //         implementing and using smallerChild, though you don't
-        //         have to.
-        throw new UnsupportedOperationException();
+        P x, y, z;
+
+        try {
+            x = c.get(k).priority;
+            y = c.get(k * 2 + 1).priority;
+            z = c.get(k * 2 + 2).priority;
+        } catch (Exception e) {
+            return;
+        }
+
+        if (x.compareTo(y) > 0 || x.compareTo(z) > 0) {
+            int h = smallerChild(k);
+            swap(k, h);
+            bubbleDown(h);
+        }
     }
 
     /** Return true if the value v is in the heap, false otherwise.
@@ -161,7 +166,11 @@ public final class Heap<V, P extends Comparable<P>> {
      * if only one child exists, return that child's index
      * Precondition: at least one child exists.*/
     private int smallerChild(int k) {
-      throw new UnsupportedOperationException();
+        int i = c.get(2*k+1).priority.compareTo(c.get(2*k+1).priority);
+        if (i > 0)
+            return 2*k+2;
+        else
+            return 2*k+1;
     }
 
 }
