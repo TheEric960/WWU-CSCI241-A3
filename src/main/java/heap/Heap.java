@@ -71,6 +71,7 @@ public final class Heap<V, P extends Comparable<P>> {
      *  @throws IllegalArgumentException if v is already in the heap.*/
     public void add(V v, P p) throws IllegalArgumentException {
         c.append(new Entry(v, p));
+        bubbleUp(c.size() - 1);
         // TODO 3.1: Update this method to maintain class invariants 3-5.
     }
 
@@ -83,33 +84,31 @@ public final class Heap<V, P extends Comparable<P>> {
     /** Swap c[h] and c[k].
      *  precondition: h and k are >= 0 and < c.size() */
     protected void swap(int h, int k) {
-        //TODO 1.2: When bubbling values up and down (later on), two values,
-        // c[h] and c[k], will have to be swapped. In order to always get this right,
-        // write this helper method to perform the swap.
-        // When done, this should pass Phase1Test::test10Swap().
-        //
+        Entry tmp = c.get(h);
+        c.put(h, c.get(k));
+        c.put(k, tmp);
+        bubbleUp(k);
+
         // TODO 3.2 Change this method to additionally maintain class
         // invariants 3-5 by updating the map field.
-        throw new UnsupportedOperationException();
     }
 
     /** Bubble c[k] up in heap to its right place.
      *  Precondition: Priority of every c[i] >= its parent's priority
      *                except perhaps for c[k] */
     protected void bubbleUp(int k) {
-        // TODO 1.3 As you know, this method should be called within add in order
-        // to bubble a value up to its proper place, based on its priority.
-        // When done, this should pass Phase1Test::test15Add_BubbleUp()
-        throw new UnsupportedOperationException();
+        if (c.get(k).priority.compareTo(c.get((k - 1) / 2).priority) < 0) {
+            swap(k, (k - 1) / 2);
+        }
     }
 
     /** Return the value of this heap with lowest priority. Do not
      *  change the heap. This operation takes constant time.
      *  @throws NoSuchElementException if the heap is empty. */
     public V peek() throws NoSuchElementException {
-        // TODO 1.4: Do peek. This is an easy one.
-        //         test20Peek() will not find errors if this is correct.
-        throw new UnsupportedOperationException();
+        if (c.size() == 0)
+            throw new NoSuchElementException();
+        return c.get(0).value;
     }
 
     /** Remove and return the element of this heap with lowest priority.
