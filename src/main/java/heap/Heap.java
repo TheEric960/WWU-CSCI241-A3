@@ -127,20 +127,35 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Each c[i]'s priority <= its childrens' priorities
      *                except perhaps for c[k] */
     protected void bubbleDown(int k) {
-        P x, y, z;
+        P x, y, z = null;
+        int h;
+        boolean flag = false;
 
-        try {
+        if (k * 2 + 1 < c.size()) {
             x = c.get(k).priority;
             y = c.get(k * 2 + 1).priority;
-            z = c.get(k * 2 + 2).priority;
-        } catch (Exception e) {
+        } else {
             return;
         }
 
-        if (x.compareTo(y) > 0 || x.compareTo(z) > 0) {
-            int h = smallerChild(k);
-            swap(k, h);
-            bubbleDown(h);
+        if (k * 2 + 2 < c.size()) {
+            z = c.get(k * 2 + 2).priority;
+            h = smallerChild(k);
+        } else {
+            h = k * 2 + 1;
+            flag = true;
+        }
+
+        if (flag) {
+            if (x.compareTo(y) > 0) {
+                swap(k, h);
+                bubbleDown(h);
+            }
+        } else {
+            if (x.compareTo(y) > 0 || x.compareTo(z) > 0) {
+                swap(k, h);
+                bubbleDown(h);
+            }
         }
     }
 
