@@ -22,8 +22,8 @@ import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class A3Test {
-    @Rule
-    public Timeout globalTimeout = Timeout.seconds(10); // 10sec timeout
+//    @Rule
+//    public Timeout globalTimeout = Timeout.seconds(10); // 10sec timeout
 
     /** Use assertEquals to check that mh correctly represents a heap
      *  with values b and priorities p.
