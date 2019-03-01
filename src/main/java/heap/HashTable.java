@@ -62,8 +62,16 @@ public class HashTable<K,V> {
      * map contains no mapping for the key.
      * Runtime: average case O(1); worst case O(size) */
     public V get(K key) {
-        // TODO 2.1 - do this together with put.
-        throw new UnsupportedOperationException();
+        for (Pair pair : buckets) {
+            Pair tmp = pair;
+            while (tmp != null) {
+                if (tmp.key == key) {
+                    return pair.value;
+                }
+                tmp = tmp.next;
+            }
+        }
+        return null;
     }
 
     /** Associate the specified value with the specified key in this map. If
@@ -73,16 +81,22 @@ public class HashTable<K,V> {
      * insertion, grow the array by a factor of two and rehash.
      * Runtime: average case O(1); worst case O(size^2 + a.length)*/
     public V put(K key, V val) {
-        // TODO 2.2
-        //   do this together with get. For now, don't worry about growing the
-        //   array and rehashing.
-        //   Tips:
-        //     - Use the key's hashCode method to find which bucket it belongs in.
-        //     - It's possible for hashCode to return a negative integer.
-        //
+        for (int i = 0; i < buckets.length; i++) {
+            Pair p = buckets[i];
+            if (p == null) {
+                buckets[i] = new Pair(key, val);
+                size++;
+                return null;
+            } else if (p.key == key) {
+                V tmp = p.value;
+                p.value = val;
+                return tmp;
+            }
+        }
+
+        return null;
         // TODO 2.5 - modify this method to grow and rehash if the load factor
         //            exceeds 0.8.
-        throw new UnsupportedOperationException();
     }
 
     /** Return true if this map contains a mapping for the specified key.
