@@ -117,8 +117,19 @@ public class HashTable<K,V> {
      *  mapping for key.
      *  Runtime: average case O(1); worst case O(size)*/
     public V remove(K key) {
-        // TODO 2.4
-        throw new UnsupportedOperationException();
+        for (int i = 0; i < buckets.length; i++) {
+            Pair p = buckets[i];
+            if (p == null) {
+                return null;
+            } else if (p.key == key) {
+                V v = p.value;
+                buckets[i] = buckets[size-1];
+                buckets[size-1] = null;
+                size--;
+                return v;
+            }
+        }
+        return null;
     }
 
 
