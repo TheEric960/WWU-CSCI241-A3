@@ -26,7 +26,8 @@ public class AList<T> {
 
   /** Creates an AList with the given capacity */
   public AList(int capacity) {
-    // TODO 1
+    a = createArray(capacity);
+    size = 0;
   }
 
   /* Grows a to double its current size if newSize exceeds a's capacity. Does
@@ -34,7 +35,9 @@ public class AList<T> {
   * and copying the old array's contents into the new one. This does *not*
   * change the AList's size. */
   protected void growIfNeeded(int newSize) {
-    // TODO 2a
+    if (newSize > a.length) {
+      resize(newSize * 2);
+    }
   }
 
   /** Resizes the AList.
