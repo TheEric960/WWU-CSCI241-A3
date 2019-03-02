@@ -81,14 +81,12 @@ public final class Heap<V, P extends Comparable<P>> {
     /** Swap c[h] and c[k].
      *  precondition: h and k are >= 0 and < c.size() */
     protected void swap(int h, int k) {
-        //TODO 1.2: When bubbling values up and down (later on), two values,
-        // c[h] and c[k], will have to be swapped. In order to always get this right,
-        // write this helper method to perform the swap.
-        // When done, this should pass Phase1Test::test10Swap().
-        //
+        Entry tmp = c.get(h);
+        c.put(h, c.get(k));
+        c.put(k, tmp);
+
         // TODO 3.2 Change this method to additionally maintain class
         // invariants 3-5 by updating the map field.
-        throw new UnsupportedOperationException();
     }
 
     /** Bubble c[k] up in heap to its right place.
