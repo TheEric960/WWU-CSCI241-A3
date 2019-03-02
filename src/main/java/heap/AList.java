@@ -64,7 +64,6 @@ public class AList<T> {
   public void put(int i, T value) {
     if (0 <= i && i < size) {
       a[i] = value;
-      resize(++size);
       return;
     }
     throw new ArrayIndexOutOfBoundsException();
