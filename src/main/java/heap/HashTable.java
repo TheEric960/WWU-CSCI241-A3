@@ -122,15 +122,15 @@ public class HashTable<K,V> {
         Pair tmp = buckets[k];
         V v;
 
-        if (tmp == null) {
+        if (tmp == null) {  // key doesn't exist
             return null;
-        } else if (tmp.key == key) {
+        } else if (tmp.key == key) {    // key is first pair
             v = tmp.value;
             if (tmp.next == null) buckets[k] = null;
             else buckets[k] = tmp.next;
             size--;
             return v;
-        } else {
+        } else {    // key might be further down
             while (tmp.next != null) {
                 if (tmp.next.key == key) {
                     v = tmp.next.value;
