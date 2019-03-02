@@ -1,8 +1,8 @@
 package heap;
 /*
- * Author:
- * Date:
- * Purpose:
+ * Author: Jack Wilson
+ * Date: 3/1/19
+ * Purpose: Learn heap/hashTable implementation
  */
 import java.util.NoSuchElementException;
 
