@@ -11,9 +11,6 @@ import java.util.NoSuchElementException;
  *  with the smallest priority is at the root of the heap. */
 public final class Heap<V, P extends Comparable<P>> {
 
-    // TODO 1.0: Read and understand the class invariants given in the
-    // following comment:
-
     /**
      * The contents of c represent a complete binary tree. We use square-bracket
      * shorthand to denote indexing into the AList (which is actually
@@ -70,14 +67,9 @@ public final class Heap<V, P extends Comparable<P>> {
      *  In Phase 3 only:
      *  @throws IllegalArgumentException if v is already in the heap.*/
     public void add(V v, P p) throws IllegalArgumentException {
-        // TODO 1.1: Write this whole method. Note that bubbleUp is not implemented,
-        // so calling it will have no effect. The first tests of add, using
-        // test00Add, ensure that this method maintains the class invariant in
-        // cases where no bubbling up is needed.
-        // When done, this should pass Phase1Test::test00Add().
-        //
+        c.append(new Entry(v, p));
+
         // TODO 3.1: Update this method to maintain class invariants 3-5.
-        throw new UnsupportedOperationException();
     }
 
     /** Return the number of values in this heap.
@@ -103,6 +95,8 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Priority of every c[i] >= its parent's priority
      *                except perhaps for c[k] */
     protected void bubbleUp(int k) {
+
+
         // TODO 1.3 As you know, this method should be called within add in order
         // to bubble a value up to its proper place, based on its priority.
         // When done, this should pass Phase1Test::test15Add_BubbleUp()
