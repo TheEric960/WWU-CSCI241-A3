@@ -95,6 +95,7 @@ public final class Heap<V, P extends Comparable<P>> {
      *                except perhaps for c[k] */
     protected void bubbleUp(int k) {
         int n = (k - 1) / 2;
+        if (n < 0) return; // there is no parent
         if (c.get(k).priority.compareTo(c.get(n).priority) < 0) {
             swap(k, n);
             bubbleUp(n);
@@ -157,9 +158,11 @@ public final class Heap<V, P extends Comparable<P>> {
      *  in the size of the heap.
      *  @throws IllegalArgumentException if v is not in the heap. */
     public void changePriority(V v, P p) throws IllegalArgumentException {
-        // TODO 3.5: Implement this method to change the priority of node in
-        // the heap.
-        throw new UnsupportedOperationException();
+        if (!map.containsKey(v)) throw new IllegalArgumentException();
+        int i = map.get(v);
+        c.put(i, new Entry(v, p));
+        bubbleUp(i);
+        bubbleDown(i);  // no need to change i since it will only go up or down
     }
 
     // Recommended helper method spec:
