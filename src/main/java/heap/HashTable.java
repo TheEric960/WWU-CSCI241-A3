@@ -149,7 +149,19 @@ public class HashTable<K,V> {
     /* check the load factor; if it exceeds 0.8, double the array size
      * (capacity) and rehash values from the old array to the new array */
     private void growIfNeeded() {
-      throw new UnsupportedOperationException();
+        if (size / buckets.length > 0.8) {
+            Pair[] tmp = buckets;
+            buckets = createBucketArray(buckets.length * 2);
+
+            for (Pair p : tmp) {
+                while (p != null) {
+                    Pair p2 = p.next;   // store references
+                    p.next = null;      // remove any references
+                    put(p.key, p.value);    // add to new buckets
+                    p = p2;
+                }
+            }
+        }
     }
 
     /* returns hashCode of a key */
