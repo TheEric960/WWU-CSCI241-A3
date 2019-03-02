@@ -36,7 +36,9 @@ public class AList<T> {
   * change the AList's size. */
   protected void growIfNeeded(int newSize) {
     if (newSize > a.length) {
-      resize(newSize * 2);
+      T[] b = createArray(a.length * 2);
+      System.arraycopy(a, 0, b, 0, a.length - 1);
+      a = b;
     }
   }
 
@@ -44,7 +46,8 @@ public class AList<T> {
   *  this *does* modify the size, and may modify the capacity if newsize
   *  exceeds capacity. */
   public void resize(int newsize) {
-    // TODO 2b
+    size = newsize;
+    growIfNeeded(newsize);
   }
 
   /** Gets element i from AList.
