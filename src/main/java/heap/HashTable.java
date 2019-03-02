@@ -62,8 +62,7 @@ public class HashTable<K,V> {
      * map contains no mapping for the key.
      * Runtime: average case O(1); worst case O(size) */
     public V get(K key) {
-        int k = Math.abs(key.hashCode()) % buckets.length;
-        Pair tmp = buckets[k];
+        Pair tmp = buckets[getHashCode(key)];
         while (tmp != null) {
             if (tmp.key == key) return tmp.value;
             tmp = tmp.next;
@@ -78,7 +77,7 @@ public class HashTable<K,V> {
      * insertion, grow the array by a factor of two and rehash.
      * Runtime: average case O(1); worst case O(size^2 + a.length)*/
     public V put(K key, V val) {
-        int k = Math.abs(key.hashCode()) % buckets.length;
+        int k = getHashCode(key);
         Pair tmp = buckets[k];
 
         while (tmp != null) {
@@ -125,6 +124,11 @@ public class HashTable<K,V> {
      * (capacity) and rehash values from the old array to the new array */
     private void growIfNeeded() {
       throw new UnsupportedOperationException();
+    }
+
+    /* returns hashCode of a key */
+    private int getHashCode(K key) {
+        return Math.abs(key.hashCode()) % buckets.length;
     }
 
     /* useful method for debugging - prints a representation of the current
