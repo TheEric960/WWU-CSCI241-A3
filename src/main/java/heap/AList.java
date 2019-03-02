@@ -53,8 +53,10 @@ public class AList<T> {
   /** Gets element i from AList.
   * @throws ArrayIndexOutOfBoundsException if 0 <= i < size does not hold */
   public T get(int i) {
-    // TODO 3a
-    throw new UnsupportedOperationException(); // delete this once implemented!
+    if (0 <= i && i < size) {
+      return a[i];
+    }
+    throw new ArrayIndexOutOfBoundsException();
   }
 
   /** Sets the ith element of the list to value.
