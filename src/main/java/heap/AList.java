@@ -37,7 +37,7 @@ public class AList<T> {
   protected void growIfNeeded(int newSize) {
     if (newSize > a.length) {
       T[] b = createArray(a.length * 2);
-      System.arraycopy(a, 0, b, 0, a.length - 1);
+      System.arraycopy(a, 0, b, 0, a.length);
       a = b;
     }
   }
@@ -81,8 +81,11 @@ public class AList<T> {
   *  this *does* modify size and cannot modify capacity.
   *  @throws NoSuchElementException if size == 0*/
   public T pop() {
-    // TODO 4b
-    throw new UnsupportedOperationException(); // delete this once implemented!
+    if (size == 0) throw new NoSuchElementException();
+    size--;
+    T tmp = a[size];
+    a[size] = null;
+    return tmp;
   }
 
   /*  Create and return a T[] of size n.
