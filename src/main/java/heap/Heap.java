@@ -83,12 +83,11 @@ public final class Heap<V, P extends Comparable<P>> {
     /** Swap c[h] and c[k].
      *  precondition: h and k are >= 0 and < c.size() */
     protected void swap(int h, int k) {
+        map.put(c.get(h).value, k);
+        map.put(c.get(k).value, h);
         Entry tmp = c.get(h);
         c.put(h, c.get(k));
         c.put(k, tmp);
-
-        // TODO 3.2 Change this method to additionally maintain class
-        // invariants 3-5 by updating the map field.
     }
 
     /** Bubble c[k] up in heap to its right place.
