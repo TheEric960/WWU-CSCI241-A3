@@ -62,14 +62,11 @@ public class HashTable<K,V> {
      * map contains no mapping for the key.
      * Runtime: average case O(1); worst case O(size) */
     public V get(K key) {
-        for (Pair pair : buckets) {
-            Pair tmp = pair;
-            while (tmp != null) {
-                if (tmp.key == key) {
-                    return pair.value;
-                }
-                tmp = tmp.next;
-            }
+        int k = key.hashCode() % buckets.length;
+        Pair tmp = buckets[k];
+        while (tmp != null) {
+            if (tmp.key == key) return tmp.value;
+            tmp = tmp.next;
         }
         return null;
     }
@@ -81,34 +78,23 @@ public class HashTable<K,V> {
      * insertion, grow the array by a factor of two and rehash.
      * Runtime: average case O(1); worst case O(size^2 + a.length)*/
     public V put(K key, V val) {
-        for (int i = 0; i < buckets.length; i++) {
-            Pair p = buckets[i];
-            if (p == null) {
-                buckets[i] = new Pair(key, val);
-                size++;
-                growIfNeeded();
-                return null;
-            } else if (p.key == key) {
-                V tmp = p.value;
-                p.value = val;
-                return tmp;
-            }
-        }
-
-        return null;
+        // TODO 2.2
+        //   do this together with get. For now, don't worry about growing the
+        //   array and rehashing.
+        //   Tips:
+        //     - Use the key's hashCode method to find which bucket it belongs in.
+        //     - It's possible for hashCode to return a negative integer.
+        //
+        // TODO 2.5 - modify this method to grow and rehash if the load factor
+        //            exceeds 0.8.
+        throw new UnsupportedOperationException();
     }
 
     /** Return true if this map contains a mapping for the specified key.
      *  Runtime: average case O(1); worst case O(size) */
     public boolean containsKey(K key) {
-        for (Pair p : buckets) {
-            if (p == null) {
-                return false;
-            } else if (p.key == key) {
-                return true;
-            }
-        }
-        return false;
+        // TODO 2.3
+        throw new UnsupportedOperationException();
     }
 
     /** Remove the mapping for the specified key from this map if present.
@@ -116,19 +102,8 @@ public class HashTable<K,V> {
      *  mapping for key.
      *  Runtime: average case O(1); worst case O(size)*/
     public V remove(K key) {
-        for (int i = 0; i < buckets.length; i++) {
-            Pair p = buckets[i];
-            if (p == null) {
-                return null;
-            } else if (p.key == key) {
-                V v = p.value;
-                buckets[i] = buckets[size-1];
-                buckets[size-1] = null;
-                size--;
-                return v;
-            }
-        }
-        return null;
+        // TODO 2.4
+        throw new UnsupportedOperationException();
     }
 
 
@@ -136,12 +111,7 @@ public class HashTable<K,V> {
     /* check the load factor; if it exceeds 0.8, double the array size
      * (capacity) and rehash values from the old array to the new array */
     private void growIfNeeded() {
-        int n = getCapacity();
-        if (size >= n * .8) {
-            Pair[] b = createBucketArray(n * 2);
-            System.arraycopy(buckets, 0, b, 0, n - 1);
-            buckets = b;
-        }
+      throw new UnsupportedOperationException();
     }
 
     /* useful method for debugging - prints a representation of the current
