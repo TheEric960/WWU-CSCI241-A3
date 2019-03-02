@@ -88,6 +88,7 @@ public class HashTable<K,V> {
             } else if (tmp.next == null) {  // next entry is null
                 tmp.next = new Pair(key, val);
                 size++;
+                growIfNeeded();
                 return null;
             }
             tmp = tmp.next;
@@ -96,10 +97,8 @@ public class HashTable<K,V> {
         // buckets[k] is null
         buckets[k] = new Pair(key, val);
         size++;
+        growIfNeeded();
         return null;
-
-        // TODO 2.5 - modify this method to grow and rehash if the load factor
-        //            exceeds 0.8.
     }
 
     /** Return true if this map contains a mapping for the specified key.
@@ -149,7 +148,10 @@ public class HashTable<K,V> {
     /* check the load factor; if it exceeds 0.8, double the array size
      * (capacity) and rehash values from the old array to the new array */
     private void growIfNeeded() {
-        if (size / buckets.length > 0.8) {
+        double n = (double) size / (double) buckets.length;
+        if (n > 0.8) {
+            int i = size;   // done to avoid issues when repopulating the array
+            size = 0;      // temporarily lower size to avoid creating a larger array
             Pair[] tmp = buckets;
             buckets = createBucketArray(buckets.length * 2);
 
@@ -161,6 +163,7 @@ public class HashTable<K,V> {
                     p = p2;
                 }
             }
+            size = i; // reset to actual size
         }
     }
 
