@@ -45,9 +45,9 @@ public class AList<T> {
   /** Resizes the AList.
   *  this *does* modify the size, and may modify the capacity if newsize
   *  exceeds capacity. */
-  public void resize(int newsize) {
-    size = newsize;
-    growIfNeeded(newsize);
+  public void resize(int newSize) {
+    size = newSize;
+    growIfNeeded(newSize);
   }
 
   /** Gets element i from AList.
@@ -62,7 +62,12 @@ public class AList<T> {
   /** Sets the ith element of the list to value.
   * @throws ArrayIndexOutOfBoundsException if 0 <= i < size does not hold */
   public void put(int i, T value) {
-    // TODO 3b
+    if (0 <= i && i < size) {
+      a[i] = value;
+      resize(++size);
+      return;
+    }
+    throw new ArrayIndexOutOfBoundsException();
   }
 
   /** Appends value at the end of the AList, increasing size by 1.
