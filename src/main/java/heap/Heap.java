@@ -149,8 +149,7 @@ public final class Heap<V, P extends Comparable<P>> {
     /** Return true if the value v is in the heap, false otherwise.
      *  The average case runtime is O(1).  */
     public boolean contains(V v) {
-        // TODO 3.4: Use map to check wehther the value is in the heap.
-        throw new UnsupportedOperationException();
+        return map.containsKey(v);
     }
 
     /** Change the priority of value v to p.
