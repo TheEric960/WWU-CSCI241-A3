@@ -118,8 +118,30 @@ public class HashTable<K,V> {
      *  mapping for key.
      *  Runtime: average case O(1); worst case O(size)*/
     public V remove(K key) {
-        // TODO 2.4
-        throw new UnsupportedOperationException();
+        int k = getHashCode(key);
+        Pair tmp = buckets[k];
+        V v;
+
+        if (tmp == null) {
+            return null;
+        } else if (tmp.key == key) {
+            v = tmp.value;
+            if (tmp.next == null) buckets[k] = null;
+            else buckets[k] = tmp.next;
+            size--;
+            return v;
+        } else {
+            while (tmp.next != null) {
+                if (tmp.next.key == key) {
+                    v = tmp.next.value;
+                    tmp.next = tmp.next.next;
+                    size--;
+                    return v;
+                }
+                tmp = tmp.next;
+            }
+            return null;
+        }
     }
 
 
