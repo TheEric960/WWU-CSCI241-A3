@@ -105,9 +105,8 @@ public final class Heap<V, P extends Comparable<P>> {
      *  change the heap. This operation takes constant time.
      *  @throws NoSuchElementException if the heap is empty. */
     public V peek() throws NoSuchElementException {
-        // TODO 1.4: Do peek. This is an easy one.
-        //         test20Peek() will not find errors if this is correct.
-        throw new UnsupportedOperationException();
+        if (c.size == 0) throw new NoSuchElementException();
+        return c.get(0).value;
     }
 
     /** Remove and return the element of this heap with lowest priority.
