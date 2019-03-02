@@ -114,14 +114,15 @@ public final class Heap<V, P extends Comparable<P>> {
      *  in the size of the heap.
      *  @throws NoSuchElementException if the heap is empty. */
     public V poll() throws NoSuchElementException {
-        // TODO 1.5: Do poll (1.5) and bubbleDown (1.6) together. When they
-        // are written correctly, testing procedures
-        // test30Poll_BubbleDown_NoDups and test40testDuplicatePriorities
-        // should pass. The second of these checks that entries with equal
-        // priority are not swapped.
-        //
+        if (c.size == 0) throw new NoSuchElementException();
+        V v = c.get(0).value;
+        c.put(0, c.get(c.size - 1));
+        c.put(c.size - 1, null);
+        c.size--;
+        bubbleDown(0);
+        return v;
+
         // TODO 3.3: Update poll() to maintain class invariants 3-5.
-        throw new UnsupportedOperationException();
     }
 
     /** Bubble c[k] down in heap until it finds the right place.
