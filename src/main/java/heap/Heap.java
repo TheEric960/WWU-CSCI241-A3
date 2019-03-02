@@ -67,10 +67,11 @@ public final class Heap<V, P extends Comparable<P>> {
      *  In Phase 3 only:
      *  @throws IllegalArgumentException if v is already in the heap.*/
     public void add(V v, P p) throws IllegalArgumentException {
+        if (map.containsKey(v)) throw new IllegalArgumentException();
         c.append(new Entry(v, p));
+        map.put(v, c.size - 1);
         bubbleUp(c.size - 1);
 
-        // TODO 3.1: Update this method to maintain class invariants 3-5.
     }
 
     /** Return the number of values in this heap.
