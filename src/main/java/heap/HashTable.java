@@ -62,8 +62,13 @@ public class HashTable<K,V> {
      * map contains no mapping for the key.
      * Runtime: average case O(1); worst case O(size) */
     public V get(K key) {
-        // TODO 2.1 - do this together with put.
-        throw new UnsupportedOperationException();
+        int k = key.hashCode() % buckets.length;
+        Pair tmp = buckets[k];
+        while (tmp != null) {
+            if (tmp.key == key) return tmp.value;
+            tmp = tmp.next;
+        }
+        return null;
     }
 
     /** Associate the specified value with the specified key in this map. If
