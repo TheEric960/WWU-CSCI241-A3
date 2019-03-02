@@ -132,10 +132,13 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Each c[i]'s priority <= its childrens' priorities
      *                except perhaps for c[k] */
     protected void bubbleDown(int k) {
-        // TODO 1.6: Do poll (1.5) and bubbleDown together.  We also suggest
-        //         implementing and using smallerChild, though you don't
-        //         have to.
-        throw new UnsupportedOperationException();
+        int n = smallerChild(k);
+        P a = c.get(k).priority;
+        P b = c.get(n).priority;
+        if (a.compareTo(b) > 0) {
+            swap(k, n);
+            bubbleDown(n);
+        }
     }
 
     /** Return true if the value v is in the heap, false otherwise.
