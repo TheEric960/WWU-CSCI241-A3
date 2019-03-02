@@ -116,8 +116,8 @@ public final class Heap<V, P extends Comparable<P>> {
     public V poll() throws NoSuchElementException {
         if (c.size == 0) throw new NoSuchElementException();
         V v = c.get(0).value;
-        c.put(0, c.get(c.size - 1));
-        c.put(c.size - 1, null);
+        c.put(0, c.get(c.size - 1));    // replace first element
+        c.put(c.size - 1, null);    // remove last element
         c.size--;
         bubbleDown(0);
         return v;
@@ -132,6 +132,7 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Each c[i]'s priority <= its childrens' priorities
      *                except perhaps for c[k] */
     protected void bubbleDown(int k) {
+        if (k * 2 + 1 > c.size - 1) return; // there is no child
         int n = smallerChild(k);
         P a = c.get(k).priority;
         P b = c.get(n).priority;
