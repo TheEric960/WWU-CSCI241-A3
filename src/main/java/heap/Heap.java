@@ -68,6 +68,7 @@ public final class Heap<V, P extends Comparable<P>> {
      *  @throws IllegalArgumentException if v is already in the heap.*/
     public void add(V v, P p) throws IllegalArgumentException {
         c.append(new Entry(v, p));
+        bubbleUp(c.size - 1);
 
         // TODO 3.1: Update this method to maintain class invariants 3-5.
     }
@@ -93,12 +94,11 @@ public final class Heap<V, P extends Comparable<P>> {
      *  Precondition: Priority of every c[i] >= its parent's priority
      *                except perhaps for c[k] */
     protected void bubbleUp(int k) {
-
-
-        // TODO 1.3 As you know, this method should be called within add in order
-        // to bubble a value up to its proper place, based on its priority.
-        // When done, this should pass Phase1Test::test15Add_BubbleUp()
-        throw new UnsupportedOperationException();
+        int n = (k - 1) / 2;
+        if (c.get(k).priority.compareTo(c.get(n).priority) < 0) {
+            swap(k, n);
+            bubbleUp(n);
+        }
     }
 
     /** Return the value of this heap with lowest priority. Do not
