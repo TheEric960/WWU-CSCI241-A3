@@ -73,7 +73,8 @@ public class AList<T> {
   /** Appends value at the end of the AList, increasing size by 1.
   * Grows the array if needed to fit the appended value */
   public void append(T value) {
-    // TODO 4a
+    resize(++size);
+    a[size - 1] = value;
   }
 
   /** Removes and returns the value at the end of the AList.
