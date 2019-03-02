@@ -1,6 +1,5 @@
 package heap;
 
-import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 
 /** An ArrayList-like dynamic array class that allocates
