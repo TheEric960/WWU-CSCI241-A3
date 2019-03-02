@@ -160,7 +160,14 @@ public final class Heap<V, P extends Comparable<P>> {
      * if only one child exists, return that child's index
      * Precondition: at least one child exists.*/
     private int smallerChild(int k) {
-      throw new UnsupportedOperationException();
+        int a = 2 * k + 1, b = 2 * k + 2;
+        P l = c.get(a).priority, r;
+        try {
+            r = c.get(b).priority;
+        } catch (IndexOutOfBoundsException e) {
+            return a;
+        }
+        return (l.compareTo(r) < 0) ? a : b;
     }
 
 }
