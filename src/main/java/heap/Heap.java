@@ -120,9 +120,13 @@ public final class Heap<V, P extends Comparable<P>> {
         c.put(c.size - 1, null);    // remove last element
         c.size--;
         bubbleDown(0);
-        return v;
 
-        // TODO 3.3: Update poll() to maintain class invariants 3-5.
+        map.remove(v);
+        for (int i = 0; i < map.size; i++) {
+            V v2 = c.get(i).value;
+            map.put(v2, i);
+        }
+        return v;
     }
 
     /** Bubble c[k] down in heap until it finds the right place.
