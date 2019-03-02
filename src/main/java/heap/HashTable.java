@@ -105,8 +105,12 @@ public class HashTable<K,V> {
     /** Return true if this map contains a mapping for the specified key.
      *  Runtime: average case O(1); worst case O(size) */
     public boolean containsKey(K key) {
-        // TODO 2.3
-        throw new UnsupportedOperationException();
+        Pair tmp = buckets[getHashCode(key)];
+        while (tmp != null) {
+            if (tmp.key == key) return true;
+            tmp = tmp.next;
+        }
+        return false;
     }
 
     /** Remove the mapping for the specified key from this map if present.
