@@ -3,62 +3,46 @@ Hello! This is [todo1_name] grading your A3.
 Your grade for A3 is based on correctness, efficiency, and clarity, as
 described in the rubric on the A3 handout.
 
-Your total score is [todo2_score] / 50
+Your total score is 50 / 50
 
 ===================================
 Repository and submission mechanics
 ===================================
-[todo3_score] / 1 point:
+1 / 1 point:
 Code is pushed to github and hours spent appear as a lone integer in hours.txt
-[todo3_comment]
 
 =======================
 Correctness: Unit Tests
 =======================
 
-[todo4_score] / 32 unit tests passed. See unittests.txt for details.
+32 / 32 unit tests passed. See unittests.txt for details.
 [todo4_comment]
 
 ==========
 Efficiency
 ==========
 
-[todo5_score] / 2 Heap.add is average-case O( log n) and worst-case O(n)
-[todo5_comment]
+2 / 2 Heap.add is average-case O( log n) and worst-case O(n)
 
-[todo6_score] / 1 Heap.peek is O(1)
-[todo6_comment]
+1 / 1 Heap.peek is O(1)
 
-[todo7_score] / 2 Heap.poll is average-case O( log n) and worst-case O(n)
-[todo7_comment]
+2 / 2 Heap.poll is average-case O( log n) and worst-case O(n)
 
-[todo8_score] / 2 HashTable.get is average-case O(1), worst-case O(n)
-[todo8_comment]
+2 / 2 HashTable.get is average-case O(1), worst-case O(n)
 
-[todo9_score] / 2 HashTable.put is average-case O(1), worst-case O(n)
-[todo9_comment]
+2 / 2 HashTable.put is average-case O(1), worst-case O(n)
 
-[todo10_score] / 2 HashTable.containsKey is average-case O(1), worst-case O(n)
-[todo10_comment]
+2 / 2 HashTable.containsKey is average-case O(1), worst-case O(n)
 
-[todo11_score] / 2 HashTable.remove is average-case O(1), worst-case O(n)
-[todo11_comment]
+2 / 2 HashTable.remove is average-case O(1), worst-case O(n)
 
-[todo12_score] / 2 Heap.contains is average-case O( log n) and worst-case O(n)
-[todo12_comment]
+2 / 2 Heap.contains is average-case O( log n) and worst-case O(n)
 
-[todo13_score] / 2 Heap.changePriority is average-case O( log n) and worst-case O(n)
-[todo13_comment]
+2 / 2 Heap.changePriority is average-case O( log n) and worst-case O(n)
 
 
 ==================
 Clarity Deductions
 ==================
 
-[todo14_deduct] no author, date, and purpose at the top of ShortestPaths.java
-[todo15_deduct] methods introduced are not accompanied by a specification
-[todo16_deduct] non-obvious code sections are missing explanatory comments
-[todo17_deduct] indentation is inconsistent
-[todo18_deduct] private helper methods are not used to keep methods short
-[todo19_deduct] code is overly verbose / lacks conciseness
-[todo20_deduct] code is overly terse or cryptic
+0
